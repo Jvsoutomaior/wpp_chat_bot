@@ -1,4 +1,17 @@
 {
+  "version": 2,
+  "installCommand": "npm install",
   "buildCommand": "npm start",
-  "installCommand": "npm install"
+  "builds": [
+    {
+      "src": "app.mjs",
+      "use": "@vercel/node"
+    }
+  ],
+	"routes": [
+		{
+			"src": "/(.*)",
+			"dest": "/"
+		}
+	]
 }
