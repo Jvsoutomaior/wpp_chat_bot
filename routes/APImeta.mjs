@@ -1,8 +1,9 @@
 import axios from "axios";
 import dotenv from 'dotenv';
 import express from 'express';
-import {initializeMessage, appendChatMessage, appendChatUser, appendChatAssistant, response} from "./APIopenAi.mjs";
 import { ChatCompletionStreamingRunner } from "openai/lib/ChatCompletionStreamingRunner.mjs";
+import {initializeMessage, appendChatMessage, appendChatUser, appendChatAssistant, response} from "./APIopenAi.mjs";
+
 
 dotenv.config();
 const { GRAPH_API_TOKEN } = process.env;
@@ -21,9 +22,7 @@ function receiveMessage(phoneNumber, message, systemprompt) {
 }
 
 
-// When you want to retrieve the chat history for a specific phone number
 function getChatHistory(phoneNumber) {
-  // Return the chat history for this phone number, or an empty array if there's no chat history
   return chatHistory[phoneNumber] || [];
 }
 
@@ -34,8 +33,6 @@ router.post("/webhook", async (req, res) => {
     console.log("Incoming webhook message:", JSON.stringify(req.body, null, 2));
   
     const message = req.body.entry?.[0]?.changes[0]?.value?.messages?.[0];
-    
-
     
     if (message?.type === "text") {
       const business_phone_number_id = req.body.entry?.[0].changes?.[0].value?.metadata?.phone_number_id;

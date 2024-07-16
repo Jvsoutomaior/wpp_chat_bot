@@ -13,8 +13,7 @@ app.use("/", webhook_setupRouter);
 app.use("/", APImetaRouter);
 
 app.get("/", (req, res) => {
-  res.send(`<pre>Nothing to see here.
-Checkout README.md to start.</pre>`);
+  res.send(`<pre>Hello</pre>`);
 });
 
 app.listen(PORT, () => {

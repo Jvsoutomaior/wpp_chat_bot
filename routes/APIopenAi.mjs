@@ -17,7 +17,6 @@ const openai = new OpenAI();
       content: text 
     };
     chatHistory[phoneNumber].push(newMessage);
-    console.log("Chat history: ", chatHistory[phoneNumber]);
     return chatHistory;
   }
   
@@ -31,13 +30,10 @@ const openai = new OpenAI();
   
   async function response(chatMessage, modelName) {
     const completion = await openai.chat.completions.create({
-      // messages: [{ role: "system", content: "You are a helpful assistant." }],
-      // model: "gpt-3.5-turbo-16k",
       messages: chatMessage,
       model: modelName,
     });
   
-    console.log(JSON.stringify(completion.choices[0]));
     return completion.choices[0].message.content;
   }
 
